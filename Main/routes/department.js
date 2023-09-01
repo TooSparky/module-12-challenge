@@ -1,9 +1,10 @@
 const router = require('express').Router();
 const db = require('../config/connection');
+const prompts = require('../index');
 
 //GET /api/department/
 router.get('/', (req, res) => {
-    const sql = ``;
+    const sql = `SELECT id, name FROM department`;
 
     db.query(sql, (err, data) => {
         if (err) {
@@ -21,7 +22,7 @@ router.post('/', ({ body }, res) => {
     if (!body || !body.name) {
         return res.status(401).json({ message: 'error', error: 'Bad Request: request body is required.'})
     }
-    const sql = ``;
+    const sql = `INSERT INTO department (name) VALUES (?)`;
     const params = [body.name];
 
     db.query(sql, params, (err, result) => {

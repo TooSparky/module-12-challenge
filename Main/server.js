@@ -1,5 +1,6 @@
 const express = require('express');
 const connection = require('./config/connection');
+const startPrompts = require('./index');
 
 const apiRoutes = require('./routes');
 
@@ -20,3 +21,5 @@ app.use('*', (req, res) => {
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
+
+startPrompts();

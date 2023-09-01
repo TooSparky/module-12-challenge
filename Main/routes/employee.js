@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const db = require('../config/connection');
+const prompts = require('../index');
 
 router.get('/', (req, res) => {
     const sql = ``;

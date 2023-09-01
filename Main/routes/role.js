@@ -1,8 +1,12 @@
 const router = require('express').Router();
 const db = require('../config/connection');
+const prompts = require('../index');
 
 router.get('/', (req, res) => {
-    const sql = ``;
+    const sql = `SELECT
+                    department.name as department,
+                    role.title, role.salary
+                FROM role`;
 
     db.query(sql, (err, role) => {
         if(err) {
