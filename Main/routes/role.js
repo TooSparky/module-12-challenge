@@ -1,12 +1,15 @@
 const router = require('express').Router();
 const db = require('../config/connection');
-const prompts = require('../index');
 
-router.get('/', (req, res) => {
+const viewAllRoles = router.get('/', (req, res) => {
     const sql = `SELECT
                     department.name as department,
                     role.title, role.salary
-                FROM role`;
+                 FROM role
+                 LEFT JOIN department
+                    ON role.department_id = department.id
+                 ORDER BY department.name
+                `;
 
     db.query(sql, (err, role) => {
         if(err) {
@@ -19,28 +22,24 @@ router.get('/', (req, res) => {
     });
 });
 
-router.put('/:id,', (req, res) => {
-    if(!req.body || !req.body.role) {
+const addRole = router.post('/', ({body}, res) => {
+    if(!body.title || !body.salary) {
         return res.status(401).json({ message: 'error', message: err.message });
     }
-    const sql = ``;
-    const params = [req.body.role, req.params.id];
+
+    const sql = `INSERT INTO role (title) VALUES (?)`;
+    const params = [body.title];
 
     db.query(sql, params, (err, result) => {
         if (err) {
             return res.status(500).json({ message: 'error', message: err.message });
         }
 
-        if(!result.affectedRows) {
-            return res.status(404).json({ message: 'error', message: err.message });
-        }
-
-        res.json({
+        res.status(201).json({
             message: 'success',
-            data: req.body,
-            changes: result.affectedRows
+            data: body
         });
     });
 });
 
-module.exports = router;
+module.exports = { viewAllRoles, addRole };

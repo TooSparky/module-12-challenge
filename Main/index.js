@@ -1,8 +1,7 @@
 const inquirer = require('inquirer');
-const db = require('./config/connection');
-const employee = require('./routes/employee');
-const role = require('./routes/role');
-const department = require('./routes/department');
+const departments = require('./routes/department');
+const employees = require('./routes/employee');
+const roles = require('./routes/role');
 
 const startPrompts = () => {
     inquirer
@@ -28,29 +27,36 @@ const startPrompts = () => {
 
             // Departments
             if (nextPrompt === 'View all departments') {
-                viewAllDepartments();
+                departments.viewAllDepartments();
+                // GET FOR VIEWING
             }
             if (nextPrompt === 'Add a department') {
-                addDepartment();
+                // POST FOR ADD
+                departments.addDepartment();
             }
 
             // Employees
             if (nextPrompt === 'View all employees') {
-                viewAllEmployees();
+                employees.viewAllEmployees();
+                // GET FOR VIEWING
             }
             if (nextPrompt === 'Add an employee') {
-                addEmployee();
+                employees.addEmployee();
+                // POST FOR ADD
             }
             if (nextPrompt === 'Update empolyee role') {
-                updateEmployeeRole();
+                employees.updateEmployeeRole();
+                // PUT FOR UPDATE
             }
 
             // Roles
             if (nextPrompt === 'View all roles') {
-                viewAllRoles();
+                roles.viewAllRoles();
+                // GET FOR VIEWING
             }
             if (nextPrompt === 'Add a role') {
-                addRole();
+                roles.addRole();
+                // POST FOR ADD
             }
 
             // Quit
@@ -59,7 +65,5 @@ const startPrompts = () => {
             }
         })
 }
-
-
 
 module.exports = startPrompts;
