@@ -57,3 +57,4 @@ const addEmployee = router.post('/', ({body}, res) => {
 });
 
 module.exports = { viewAllEmployees, updateEmployeeRole, addEmployee };
+module.exports = router;

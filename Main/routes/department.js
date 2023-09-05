@@ -36,3 +36,4 @@ const addDepartment = router.post('/', ({ body }, res) => {
 });
 
 module.exports = { viewAllDepartments, addDepartment };
+module.exports = router;

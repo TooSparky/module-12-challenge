@@ -43,3 +43,4 @@ const addRole = router.post('/', ({body}, res) => {
 });
 
 module.exports = { viewAllRoles, addRole };
+module.exports = router;
