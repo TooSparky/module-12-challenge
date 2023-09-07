@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const db = require('../config/connection');
 
+// GET
 const viewAllRoles = router.get('/', (req, res) => {
     const sql = `SELECT
                     department.name as department,
@@ -22,6 +23,7 @@ const viewAllRoles = router.get('/', (req, res) => {
     });
 });
 
+// POST
 const addRole = router.post('/', ({body}, res) => {
     if(!body.title || !body.salary) {
         return res.status(401).json({ message: 'error', message: err.message });

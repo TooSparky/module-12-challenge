@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const db = require('../config/connection');
 
-//GET /api/department/
+// GET
 const viewAllDepartments = router.get('/', (req, res) => {
     const sql = `SELECT id, name FROM department`;
 
@@ -16,7 +16,7 @@ const viewAllDepartments = router.get('/', (req, res) => {
     });
 });
 
-//POST /api/department/
+// POST
 const addDepartment = router.post('/', ({ body }, res) => {
     if (!body || !body.name) {
         return res.status(401).json({ message: 'error', error: 'Bad Request: request body is required.'})

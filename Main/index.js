@@ -1,7 +1,7 @@
 const inquirer = require('inquirer');
-const departments = require('./routes/department');
-const employees = require('./routes/employee');
-const roles = require('./routes/role');
+const { viewAllDepartments, addDepartment } = require('./routes/department');
+const { viewAllEmployees, updateEmployeeRole, addEmployee } = require('./routes/employee');
+const { viewAllRoles, addRole } = require('./routes/role');
 
 function startPrompts() {
     inquirer
@@ -27,44 +27,36 @@ function startPrompts() {
 
             // Departments
             if (nextPrompt === 'View all departments') {
-                departments.viewAllDepartments();
-                // GET FOR VIEWING
+                viewAllDepartments;
             }
             if (nextPrompt === 'Add a department') {
-                // POST FOR ADD
-                departments.addDepartment();
+                addDepartment;
             }
 
             // Employees
             if (nextPrompt === 'View all employees') {
-                employees.viewAllEmployees();
-                // GET FOR VIEWING
+                viewAllEmployees;
             }
             if (nextPrompt === 'Add an employee') {
-                employees.addEmployee();
-                // POST FOR ADD
+                addEmployee;
             }
             if (nextPrompt === 'Update empolyee role') {
-                employees.updateEmployeeRole();
-                // PUT FOR UPDATE
+                updateEmployeeRole;
             }
 
             // Roles
             if (nextPrompt === 'View all roles') {
-                roles.viewAllRoles();
-                // GET FOR VIEWING
+                viewAllRoles;
             }
             if (nextPrompt === 'Add a role') {
-                roles.addRole();
-                // POST FOR ADD
+                addRole;
             }
 
             // Quit
             if (nextPrompt === 'Quit') {
-                process.quit();
+                return;
             }
         })
 }
-
 
 module.exports = startPrompts;

@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const db = require('../config/connection');
 
+// GET
 const viewAllEmployees = router.get('/', (req, res) => {
     const sql = `SELECT id, first_name, last_name FROM employee`;
 
@@ -16,12 +17,13 @@ const viewAllEmployees = router.get('/', (req, res) => {
     });
 });
 
+// PUT
 const updateEmployeeRole = router.put('/:id', (req, res) => {
     if (!req.body || !req.body.employee) {
         return res.status(401).json({ message: 'error', message: err.message });
     }
-    const sql = `UPDATE employee SET first_name = ?, last_name = ? WHERE id = ?`;
-    const params = [req.body.employee, req.params.id];
+    const sql = `UPDATE employee SET first_name = ?, last_name = ?, WHERE id = ?`;
+    const params = [req.body.first_name, req.body.last_name, req.params.id];
 
     db.query(sql, params, (err, result) => {
         if (!result.affectedRows) {
@@ -36,12 +38,13 @@ const updateEmployeeRole = router.put('/:id', (req, res) => {
     });
 });
 
+// POST
 const addEmployee = router.post('/', ({body}, res) => {
     if (!body.first_name || !body.last_name) {
         return res.status(401).json({ message: 'error', error: 'Bad Request: request body is required.' })
     }
 
-    const sql = `INSERT INTO employee (name) VALUES (?)`;
+    const sql = `INSERT INTO employee (first_name) VALUES (?)`;
     const params = [body.first_name && body.last_name];
 
     db.query(sql, params, (err, result) => {

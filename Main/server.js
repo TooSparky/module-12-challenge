@@ -1,5 +1,4 @@
 const express = require('express');
-const connection = require('./config/connection');
 const startPrompts = require('./index');
 
 const apiRoutes = require('./routes');
@@ -20,4 +19,3 @@ app.listen(PORT, () => {
     console.log(`\nServer running on port ${PORT}`)
     startPrompts();
 });
-

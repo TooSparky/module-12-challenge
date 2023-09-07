@@ -10,7 +10,9 @@ Install npm inquirer@8.2.4, npm express, and npm init to get started. This will 
 
 ## Usage
 
+After installing all npm's, use a site such as Insomnia to view all of the data. Change the URL at the top to visit the different routes of the database.
 
+Video walkthrough - 
 
 ## Credits
 
