@@ -7,8 +7,6 @@ const apiRoutes = require('./routes');
 const PORT = process.env.PORT || 3001;
 const app = express();
 
-connection.mysql();
-
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
@@ -19,7 +17,7 @@ app.use('*', (req, res) => {
 });
 
 app.listen(PORT, () => {
-    console.log(`\nServer running on port ${PORT}`);
+    console.log(`\nServer running on port ${PORT}`)
+    startPrompts();
 });
 
-startPrompts();

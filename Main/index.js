@@ -3,7 +3,7 @@ const departments = require('./routes/department');
 const employees = require('./routes/employee');
 const roles = require('./routes/role');
 
-const startPrompts = () => {
+function startPrompts() {
     inquirer
         .prompt([
             {
@@ -65,5 +65,6 @@ const startPrompts = () => {
             }
         })
 }
+
 
 module.exports = startPrompts;
